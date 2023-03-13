@@ -12,7 +12,7 @@
     //echo $conn->connect_errno;
     $sql = "SELECT * FROM `users`;";
     $result = $conn->query($sql);
-    $user = $result->fetch_assoc();
+    //$user = $result->fetch_assoc();
     //echo $user["firstName"];
 
     while($user = $result->fetch_assoc()){
