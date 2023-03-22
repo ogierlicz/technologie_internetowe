@@ -1,30 +1,31 @@
 <?php
-    $firstname = "Janusz";
-    $lastname = "Nowak";
-    echo "Imie i nazwisko:  $firstname $lastname<br>";
-    echo 'Imie i nazwisko:  $firstname $lastname<br>';
-
-// heardoc
-    echo <<< DATA
-    Imię: $firstname<br>
-    Nazwisko: $lastname<br>
+    $firstName = "Janusz";
+    $lastName = "Nowak";
+		echo "Imię i nazwisko: $firstName $lastName<br>";
+		echo 'Imię i nazwisko: $firstName $lastName<br>';
+//	heredoc
+		echo <<< DATA
+			Imię: $firstName<br>
+			Nazwisko: $lastName<br>
 DATA;
-    $data = <<< DATA
-    Imię: $firstname<br>
-    Nazwisko: $lastname<br>
+		$data = <<< DATA
+			Imię: $firstName<br>
+			Nazwisko: $lastName<br>
 DATA;
-    echo $data;
+		echo $data;
 
-// nowdoc
+//	nowdoc
 echo <<< 'DATA'
-    Imię: $firstname<br>
-    Nazwisko: $lastname<br>
+			Imię: $firstName<br>
+			Nazwisko: $lastName<br>
 DATA;
 
 $bin = 0b1011;
-echo $bin; // 11
-$oct = 0o11;
-echo $oct; // 9
+echo $bin; //11
+//$oct = 0o11;
+$oct = 011;
+echo $oct; //9
 $hex = 0xA1;
-echo $hex;
+echo $hex; //161
+
 ?>

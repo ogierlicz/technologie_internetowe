@@ -1,7 +1,4 @@
 <?php
-    //echo"db";
-?>
-
-<?php
-    $conn = new mysqli(hostname:"localhost", username:"root", password:"", database:"cdv_gr_3")
-?>
+//	echo "db";
+	$conn = new mysqli("localhost", "root", "", "cdv_gr_3_v2");
+//	echo $conn->connect_errno; //0 -> ok
