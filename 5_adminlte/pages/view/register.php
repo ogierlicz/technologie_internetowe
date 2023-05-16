@@ -1,3 +1,7 @@
+<?php
+session_start()
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,22 +12,33 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
+  <?php
+    if (($_SESSION['error_message'])){
+      echo <<< ERROR
+      <div class="callout callout-danger">
+                  <h5>Błąd!</h5>
+
+                  <p>$_SESSION[error_message]</p>
+                </div>
+      ERROR;
+    }
+  ?>
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a href="./" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Rejestracja użytkownika</p>
 
-      <form action="../scripts/register.php" method="post">
+      <form action="../../scripts/register_user.php" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Podaj imię" name="firstName">
           <div class="input-group-append">
@@ -49,7 +64,23 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Powtórz email" name="email">
+          <input type="email" class="form-control" placeholder="Powtórz email" name="confirm_email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Podaj dodatkowy email" name="additional_email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Powtórz dodatkowy email" name="confirm_additional_email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -65,7 +96,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Powtórz hasło" name="password">
+          <input type="password" class="form-control" placeholder="Powtórz hasło" name="confirm_password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -81,7 +112,17 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="number" class="form-control" placeholder="Podaj miasto" name="city_id">
+        <select class="form-control">
+          <?php
+          require_once "../../scripts/connect.php";
+          $sql = "SELECT * FROM cities";
+          $result = $conn->query($sql);
+          while($city = $result->fetch_assoc()){
+            echo"<option
+            value = '$city[id]'>$city[city]</option>";
+          }
+          ?>
+                        </select>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-city"></span>
@@ -116,7 +157,7 @@
         </a>
       </div>
 
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="./" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
